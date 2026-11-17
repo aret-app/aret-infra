@@ -8,7 +8,7 @@ GitHub-hosted runners, free for public repositories (including ARM).
 
 | Workflow | What it does |
 |---|---|
-| [`rust-ci.yml`](.github/workflows/rust-ci.yml) | `cargo fmt --check`, `clippy -D warnings`, `cargo test`, `cargo deny check` (Rust version from the caller's `rust-toolchain.toml`) |
+| [`rust-ci.yml`](.github/workflows/rust-ci.yml) | `cargo fmt --check`, `clippy -D warnings`, `cargo test`, `cargo deny check` (Rust version from the caller's `rust-toolchain.toml`). The test job has a **PostgreSQL 18 + PostGIS** service (`TEST_DATABASE_URL`, throwaway password `postgres`, CI only) and sets `REQUIRE_DB=1` so DB tests can't silently skip. |
 | [`container-image.yml`](.github/workflows/container-image.yml) | Builds a Docker image natively for **amd64 and arm64**; with `push: true`, publishes one multi-arch image to `ghcr.io/aret-app/<image>` tagged `sha-<commit>` and `latest` (default branch) |
 
 ### Using them
